@@ -1,0 +1,26 @@
+{% block content %}
+		<form action="" method="post">
+			{{ form.hidden_tag() }}
+		<p>
+			<head> 
+				<title>Login</title>
+			</head>
+			<h3>Please log into your account:</h3>
+			<p>
+			{{ form.username.label }}<br>
+			{{ form.username(size=32) }}
+		</p>
+		</p>
+		<p>
+		    {{ form.password.label }}<br>
+		    {{ form.password(size=32) }}
+		</p>
+		<p>
+			{{ form.authcode.label }}<br>
+			{{ form.authcode(size=32) }}
+		</p>
+		<p>
+			{{ form.submit() }} 
+		</p>
+		</form>
+{% endblock %}

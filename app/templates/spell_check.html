@@ -1,0 +1,25 @@
+<form action="/text" method="post">
+    <p>
+   <title>Spell Check</title>
+   <h4>Please enter your text to be spell-checked:</h4>
+   <p>
+   <body>
+      {% with messages = get_flashed_messages() %}
+			{% for message in messages %}
+				<p>{{ message }}</p>
+			{% endfor %}
+	{% endwith %}
+      </p>
+      <p>
+      {{ form.textfield(size=1000) }}
+      </p>
+      <p>
+		{{ form.submit() }}
+      </p>
+</form>
+{% for comment in comments %}
+<div class="row">
+	{{ comment }}
+</div>
+{% endfor %}
+</body>

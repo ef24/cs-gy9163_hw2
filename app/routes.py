@@ -5,13 +5,12 @@ ewf215@nyu.edu
 """
 
 from app import app
-from app.forms import RegisterForm, LoginForm
+from app.forms import RegisterForm, LoginForm, SpellCheckForm
 from app.models import User
-from flask import render_template, flash, redirect, url_for
+from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user
 from app import db, login
  
-
 @app.route('/')
 @app.route('/index.html')
 def index():
@@ -21,50 +20,46 @@ def index():
 def register():
 	if current_user.is_authenticated:
 		return redirect(url_for('index'))
+	# create the registration form
 	form = RegisterForm()
 	if form.validate_on_submit():
+		#add them to the user database
 		user = User(username=form.username.data)
 		user.set_password(form.password.data)
 		db.session.add(user)
 		db.session.commit()
 		flash('You are now registered.')
+		# ask them to log in
 		return redirect(url_for('login'))
-			#flash('Login requested for user {}'.format(form.username.data))
-			#return redirect('/')
-		#return 'user {}<br>pass {}<br>2fa {}'.format(
-			#form.username.data, form.password.data, form.authcode.data)
 	return render_template('register.html', title='Registration Form', form=form)
 		
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 	# check if the user is already logged in
 	if current_user.is_authenticated:
-		return redirect(url_for('index'))
-		
+		return redirect(url_for('spell_check'))
 	# create the login form
 	form = LoginForm()
-	
 	# validate the login attempt
 	if form.validate_on_submit():
+		# check the database
 		user = User.query.filter_by(username=form.username.data).first()
-		if user is None or not user.check_password(form.password.data):
-			return redirect(url_for('login'))
-		#login_user(user, remember=form.remember_me.data)
-		return redirect(url_for('index'))
-			#return 'user {}<br>pass {}<br>2fa {}'.format(
-				#form.username.data, form.password.data, form.authcode.data)
-	return render_template('login.html', title='Login Form', form=form,)
+		# if the username is not in the database or if the password is incorrect, redirect back to login page
+		if user is not None and user.check_password(form.password.data):
+			flash("You have successfully logged in.")
+			return redirect(url_for("spell_check"))
+		if user is None:
+			flash("Invalid username or password.")
+		else:
+			flash("Invalid username or password.")
+	return render_template('login.html', title='Login Form', form=form)
 
-@app.route('/spell_check')
-def spell_check():
-	return "Spell check."
-
-#TO DO:
-# Check if username is in database
-# If not in database, then register & create register
-# Then send to login page
-# Go through registration process, go through pseudocode, translate to code
-# Write it out in words exactly what's going on in the process
-# Think about what's going on with the spellcheck and what we'll do there
-# E.g., Get something from the user to check, tell user whether it's valid or not, etc.
-# Monday/Tues testing of registration/login
+@app.route('/spell_check', methods=['GET', 'POST'])
+def spell_check(comments = []):
+	form = SpellCheckForm()
+	if request.method == 'GET':
+		return render_template('spell_check.html', comments=comments)
+	#comments.append(request.form['spell_check'])
+	return redirect(url_for('spell_check'))
+			
+	#return render_template('spell_check.html', title='Spell Check Form', form=form)

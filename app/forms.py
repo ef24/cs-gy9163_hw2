@@ -4,7 +4,7 @@ ewf215@nyu.edu
 10.10.2019
 """
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, TextAreaField, SubmitField
 from wtforms.validators import DataRequired, EqualTo, ValidationError, Required
 from app.models import User
 
@@ -20,9 +20,13 @@ class RegisterForm(FlaskForm):
 		user = User.query.filter_by(username=username.data).first()
 		if user is not None:
 			raise ValidationError('Username taken. Please choose again.')
-
+			
 class LoginForm(FlaskForm):
 	username = StringField('Username', validators=[DataRequired()])
 	password = PasswordField('Password', validators=[DataRequired()])
 	authcode = StringField('2FA Code', validators=[DataRequired()])
 	submit = SubmitField('Login')
+
+class SpellCheckForm(FlaskForm):
+	textfield = TextAreaField('Input Text', render_kw={"rows": 25, "cols": 100})
+	submit = SubmitField('Submit')

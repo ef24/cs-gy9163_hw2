@@ -10,20 +10,19 @@ from app.models import User
 
 
 class RegisterForm(FlaskForm):
-	username = StringField('Username', validators=[DataRequired()])
-	password = PasswordField('Password', validators=[DataRequired()])
-	password2 = PasswordField('Repeat password', validators=[DataRequired(), EqualTo('password')])
+	uname = StringField('Username', validators=[DataRequired()])
+	pword = PasswordField('Password', validators=[DataRequired()])
 	authcode = StringField('2FA Code', validators=[DataRequired()])
 	submit = SubmitField('Register')
 	
 	def validate_username(self, username):
-		user = User.query.filter_by(username=username.data).first()
+		user = User.query.filter_by(uname=uname.data).first()
 		if user is not None:
 			raise ValidationError('Username taken. Please choose again.')
 			
 class LoginForm(FlaskForm):
-	username = StringField('Username', validators=[DataRequired()])
-	password = PasswordField('Password', validators=[DataRequired()])
+	uname = StringField('Username', validators=[DataRequired()])
+	pword = PasswordField('Password', validators=[DataRequired()])
 	authcode = StringField('2FA Code', validators=[DataRequired()])
 	submit = SubmitField('Login')
 

@@ -24,8 +24,8 @@ def register():
 	form = RegisterForm()
 	if form.validate_on_submit():
 		#add them to the user database
-		user = User(username=form.username.data)
-		user.set_password(form.password.data)
+		user = User(username=form.uname.data)
+		user.set_password(form.pword.data)
 		db.session.add(user)
 		db.session.commit()
 		flash('You are now registered.')
@@ -43,9 +43,9 @@ def login():
 	# validate the login attempt
 	if form.validate_on_submit():
 		# check the database
-		user = User.query.filter_by(username=form.username.data).first()
+		user = User.query.filter_by(username = form.uname.data).first()
 		# if the username is not in the database or if the password is incorrect, redirect back to login page
-		if user is not None and user.check_password(form.password.data):
+		if user is not None and user.check_password(form.pword.data):
 			flash("You have successfully logged in.")
 			return redirect(url_for("spell_check"))
 		if user is None:
@@ -58,7 +58,7 @@ def login():
 def spell_check(comments = []):
 	form = SpellCheckForm()
 	if request.method == 'GET':
-		return render_template('spell_check.html', comments=comments)
+		return render_template('spell_check.html', comments=comments, form=form)
 	#comments.append(request.form['spell_check'])
 	return redirect(url_for('spell_check'))
 			

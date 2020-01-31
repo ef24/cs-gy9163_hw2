@@ -1,0 +1,22 @@
+{% block content %}
+			<head> 
+				<title>Result</title>
+			</head>
+			
+      {% with messages = get_flashed_messages() %}
+			{% for message in messages %}
+				{% if message %}
+					<p>{{message}}</p>
+				{% endif %}
+			{% endfor %}
+		{% endwith %}
+			
+			<h3>I just got the following text:</h3>
+			<p>
+			{{form.textfield.raw_data}}
+		
+		</p>
+		
+{% endblock %}
+
+

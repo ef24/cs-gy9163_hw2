@@ -1,25 +1,127 @@
-<form action="/text" method="post">
-    <p>
-   <title>Spell Check</title>
-   <h4>Please enter your text to be spell-checked:</h4>
-   <p>
-   <body>
-      {% with messages = get_flashed_messages() %}
-			{% for message in messages %}
-				<p>{{ message }}</p>
-			{% endfor %}
-	{% endwith %}
-      </p>
-      <p>
-      {{ form.textfield(size=1000) }}
-      </p>
-      <p>
-		{{ form.submit() }}
-      </p>
-</form>
-{% for comment in comments %}
-<div class="row">
-	{{ comment }}
-</div>
+<html>
+<head>
+<title>wordflask</title>
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet" type="text/css">
+<style>
+<!--
+table.mainTable
+{
+  width: 75%;
+  padding: 15px;
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
+  border: 5px solid #365777;
+  border-collapse: separate;
+  border-spacing: 5px 10px;
+  background-color: #ffffff;  
+}
+td.mainTitle
+{
+  padding: 10px;
+  vertical-align: middle;
+  background-color: #093145;
+  text-align: center;
+  font-family: 'Lato';
+  font-size: 20pt;
+  font-weight: bold;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+td.subtitleLightOnDark
+{
+  padding: 10px;
+  vertical-align: top;
+  background-color: #015a92;
+  text-align: right;
+  font-family: 'Lato';
+  font-size: 13pt;
+  color: #82b6dd;
+}
+td.subtitleDarkOnLight
+{
+  padding: 10px;
+  vertical-align: top;
+  background-color: #82b6dd;
+  text-align: right;
+  font-family: 'Lato';
+  font-size: 13pt;
+  color: #015a92;
+}
+td.content
+{
+  padding: 10px;
+  vertical-align: top;
+  background-color: #ffffff;
+  text-align: left;
+  font-family: 'Lora';
+  font-size: 12pt;
+  color: #000000;
+}
+-->
+</style>
+</head>
+<body>
+<table class = "mainTable">
+<thead>
+<tr>
+<td colspan="4" class="mainTitle">
+wordflask
+</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="1" class="subTitleLightOnDark">
+<p>
+Spell Check Query
+</p>
+</td>
+<td class="content">
+<!-- BEGIN: navigation links -->
+<p>You are logged in, <strong>{% print(current_user.username) %}</strong>!</p>
+<p>&#9654; <a href="/">Main Page</a></p>
+<p>&#9654; <a href="{% print(url_for('logout')) %}">Logout</a></p>
+<!-- END: navigation links -->    
+<!-- BEGIN: flashed messages -->
+{% with messages = get_flashed_messages() %}
+{% for message in messages %}
+{% if message %}
+<p>{{message}}</p>
+{% endif %}
 {% endfor %}
+{% endwith %}
+<!-- END: flashed messages -->
+{% if result %}
+<!-- BEGIN: spell check results -->
+<p>
+{% for misspelled_word in result.split("Misspelled word: ") %}
+{% if misspelled_word %}
+<strong>Misspelled word: </strong> {{ misspelled_word.strip() }}<br>
+{% endif %}
+{% endfor %}
+</p>
+<!-- END: spell check results -->
+{% endif %}
+<!-- BEGIN: spell check query form -->
+<form action="{{ url_for('spell_check') }}" method="post">
+{{ form.hidden_tag() }}
+<p>
+Please enter the text that you want me to check for spelling errors.
+</p>
+<p>
+{{ form.textfield(size=1000) }}
+</p>
+<p>
+{{ form.submit() }}
+</p>
+</form>
+</form>	
+<!-- END: spell check query form -->	
+</td>
+</tr>
+</tbody>
+</table>
 </body>
+</html>

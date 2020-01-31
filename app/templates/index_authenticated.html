@@ -74,41 +74,12 @@ wordflask
 <tbody>
 <tr>
 <td colspan="1" class="subTitleLightOnDark">
-Login
+<p>Main Page</p>
 </td>
 <td class="content">
-<!-- BEGIN: flashed messages -->
-{% with messages = get_flashed_messages() %}
-{% for message in messages %}
-{% if message %}
-<p>{{message}}</p>
-{% endif %}
-{% endfor %}
-{% endwith %}
-<!-- END: flashed messages -->
-<!-- BEGIN: login form -->
-<form action="{{ url_for('login') }}" method="post">
-{{ form.hidden_tag() }}
-<p>
-{{ form.uname.label }}<br>
-{{ form.uname(size=32) }}
-</p>
-<p>
-{{ form.pword.label }}<br>
-{{ form.pword(size=32) }}
-</p>
-<p>
-{{ form.authcode.label }}<br>
-{{ form.authcode(size=32) }}
-</p>
-<p>
-{{ form.submit() }} 
-</p>
-<p>
-New user? Click <a href="{{ url_for('register') }}">here</a> to register for an account.
-</p>
-</form>	
-<!-- END: login form -->	
+<p>You are logged in, <strong>{% print(current_user.username) %}</strong>!</p>
+<p>&#9654; <a href="/spell_check">Spell Check Query</a></p>
+<p>&#9654; <a href="/logout">Logout</a></p>
 </td>
 </tr>
 </tbody>

@@ -15,8 +15,8 @@ class RegisterForm(FlaskForm):
 	authcode = StringField('2FA Code', validators=[DataRequired()])
 	submit = SubmitField('Register')
 	
-	def validate_username(self, username):
-		user = User.query.filter_by(uname=uname.data).first()
+	def validate_username(self, uname):
+		user = User.query.filter_by(username=uname).first()
 		if user is not None:
 			raise ValidationError('Username taken. Please choose again.')
 			

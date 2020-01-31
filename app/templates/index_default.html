@@ -29,7 +29,7 @@ td.mainTitle
   color: #ffffff;
   letter-spacing: 1px;
 }
-td.subtitleLightOnDark
+td.leftColumn
 {
   padding: 10px;
   vertical-align: top;
@@ -39,17 +39,7 @@ td.subtitleLightOnDark
   font-size: 13pt;
   color: #82b6dd;
 }
-td.subtitleDarkOnLight
-{
-  padding: 10px;
-  vertical-align: top;
-  background-color: #82b6dd;
-  text-align: right;
-  font-family: 'Lato';
-  font-size: 13pt;
-  color: #015a92;
-}
-td.content
+td.rightColumn
 {
   padding: 10px;
   vertical-align: top;
@@ -73,42 +63,11 @@ wordflask
 </thead>
 <tbody>
 <tr>
-<td colspan="1" class="subTitleLightOnDark">
-Login
+<td colspan="1" class="leftColumn">
 </td>
-<td class="content">
-<!-- BEGIN: flashed messages -->
-{% with messages = get_flashed_messages() %}
-{% for message in messages %}
-{% if message %}
-<p>{{message}}</p>
-{% endif %}
-{% endfor %}
-{% endwith %}
-<!-- END: flashed messages -->
-<!-- BEGIN: login form -->
-<form action="{{ url_for('login') }}" method="post">
-{{ form.hidden_tag() }}
-<p>
-{{ form.uname.label }}<br>
-{{ form.uname(size=32) }}
-</p>
-<p>
-{{ form.pword.label }}<br>
-{{ form.pword(size=32) }}
-</p>
-<p>
-{{ form.authcode.label }}<br>
-{{ form.authcode(size=32) }}
-</p>
-<p>
-{{ form.submit() }} 
-</p>
-<p>
-New user? Click <a href="{{ url_for('register') }}">here</a> to register for an account.
-</p>
-</form>	
-<!-- END: login form -->	
+<td class="rightColumn">
+<p>&#9654; <a href="/register">Register for an Account</a></p>
+<p>&#9654; <a href="/login">Login to an Existing Account</a></p>
 </td>
 </tr>
 </tbody>

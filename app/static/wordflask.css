@@ -1,0 +1,59 @@
+table.mainTable
+{
+  width: 75%;
+  padding: 15px;
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
+  border: 5px solid #365777;
+  border-collapse: separate;
+  border-spacing: 5px 10px;
+  background-color: #ffffff;  
+}
+td.mainTitle
+{
+  width: 20%;
+  padding: 10px;
+  vertical-align: middle;
+  background-color: #093145;
+  text-align: center;
+  font-family: 'Lato';
+  font-size: 20pt;
+  font-weight: bold;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+td.subtitleLightOnDark
+{
+  width: 80%;
+  width: 15%;
+  padding: 10px;
+  vertical-align: middle;
+  background-color: #015a92;
+  text-align: right;
+  font-family: 'Lato';
+  font-size: 13pt;
+  color: #82b6dd;
+}
+td.subtitleDarkOnLight
+{
+  width: 25%;
+  padding: 10px;
+  vertical-align: top;
+  background-color: #82b6dd;
+  text-align: right;
+  font-family: 'Lato';
+  font-size: 13pt;
+  color: #015a92;
+}
+td.content
+{
+  width: 80%;
+  padding: 10px;
+  vertical-align: top;
+  background-color: #ffffff;
+  text-align: left;
+  font-family: 'Lora';
+  font-size: 12pt;
+  color: #000000;
+}

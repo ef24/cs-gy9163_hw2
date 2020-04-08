@@ -1,8 +1,9 @@
 """
 app/__init__py
 ewf215@nyu.edu
-10.10.2019
+04.07.2020
 """
+
 from flask import Flask
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
@@ -18,3 +19,7 @@ login = LoginManager(app)
 
 # import package modules
 from app import routes, models
+
+# jinja configuration
+app.jinja_env.trim_blocks = True
+app.jinja_env.lstrip_blocks = True

@@ -1,88 +1,11 @@
-<html>
-<head>
-<title>wordflask</title>
-<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet" type="text/css">
-<style>
-<!--
-table.mainTable
-{
-  width: 75%;
-  padding: 15px;
-  text-align: left;
-  margin-left: auto;
-  margin-right: auto;
-  border: 5px solid #365777;
-  border-collapse: separate;
-  border-spacing: 5px 10px;
-  background-color: #ffffff;  
-}
-td.mainTitle
-{
-  padding: 10px;
-  vertical-align: middle;
-  background-color: #093145;
-  text-align: center;
-  font-family: 'Lato';
-  font-size: 20pt;
-  font-weight: bold;
-  color: #ffffff;
-  letter-spacing: 1px;
-}
-td.subtitleLightOnDark
-{
-  padding: 10px;
-  vertical-align: top;
-  background-color: #015a92;
-  text-align: right;
-  font-family: 'Lato';
-  font-size: 13pt;
-  color: #82b6dd;
-}
-td.subtitleDarkOnLight
-{
-  padding: 10px;
-  vertical-align: top;
-  background-color: #82b6dd;
-  text-align: right;
-  font-family: 'Lato';
-  font-size: 13pt;
-  color: #015a92;
-}
-td.content
-{
-  padding: 10px;
-  vertical-align: top;
-  background-color: #ffffff;
-  text-align: left;
-  font-family: 'Lora';
-  font-size: 12pt;
-  color: #000000;
-}
--->
-</style>
-</head>
-<body>
-<table class = "mainTable">
-<thead>
-<tr>
-<td colspan="4" class="mainTitle">
-wordflask
-</td>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td colspan="1" class="subTitleLightOnDark">
-<p>Main Page</p>
-</td>
-<td class="content">
-<p>You are logged in, <strong>{% print(current_user.username) %}</strong>!</p>
-<p>&#9654; <a href="/spell_check">Spell Check Query</a></p>
-<p>&#9654; <a href="/logout">Logout</a></p>
-</td>
-</tr>
-</tbody>
-</table>
-</body>
-</html>
+{% extends "wordflask-base.html" %}
+
+{% block title %}welcome center{% endblock %}
+
+{% block head  %}{{ super() }}{% endblock %}
+
+{% block content %}
+     <p>You are logged in, <strong>{% print(current_user.username) %}</strong>!</p>
+     <p>&#9654; <a href="/spell_check">Spell Check Query</a></p>
+     <p>&#9654; <a href="/logout">Logout</a></p>
+{% endblock %}

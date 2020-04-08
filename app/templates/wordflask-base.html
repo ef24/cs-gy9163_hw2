@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+ <head>
+  {% block head %}
+  <title>wordflask: {% block title %}{% endblock %}</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet" type="text/css">
+  <link href="/static/wordflask.css" rel="stylesheet" type="text/css">
+  {% endblock %}
+ </head>
+<body>
+ <table class="mainTable">
+   <tr>
+    <td colspan="3" class="mainTitle">
+     wordflask
+    </td>
+   </tr>
+   <tr>
+    <td class="content">
+     <p>{{ self.title() }}</p>
+     {% with messages = get_flashed_messages() %}
+     <!-- BEGIN: flashed messages -->
+     {% for message in messages %}
+     {% if message %}
+     <p>{{message}}</p>
+     {% endif %}
+     {% endfor %}
+     <!-- END: flashed messages -->
+     {% endwith %}
+
+     {% block content %}{% endblock %}
+    </td>
+   </tr>
+ </table>
+</body>
+</html>

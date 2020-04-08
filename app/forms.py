@@ -3,11 +3,12 @@ app/forms.py
 ewf215@nyu.edu
 10.10.2019
 """
-from flask_wtf import FlaskForm
+
+from flask_wtf import FlaskForm		# csrf protection is enabled by default
+
 from wtforms import StringField, PasswordField, BooleanField, TextAreaField, SubmitField
 from wtforms.validators import DataRequired, EqualTo, ValidationError, Required
 from app.models import User
-
 
 class RegisterForm(FlaskForm):
 	uname = StringField('Username', validators=[DataRequired()])

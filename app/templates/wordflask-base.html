@@ -18,16 +18,11 @@
    <tr>
     <td class="content">
      <p>{{ self.title() }}</p>
-     {% with messages = get_flashed_messages() %}
-     <!-- BEGIN: flashed messages -->
-     {% for message in messages %}
-     {% if message %}
-     <p>{{message}}</p>
+     {% if result %}
+     <!-- BEGIN: display result -->
+     <p id="{{ id }}">{{ result }}</p>
+     <!--   END: display result -->
      {% endif %}
-     {% endfor %}
-     <!-- END: flashed messages -->
-     {% endwith %}
-
      {% block content %}{% endblock %}
     </td>
    </tr>

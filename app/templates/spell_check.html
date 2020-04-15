@@ -1,6 +1,6 @@
 {% extends "wordflask-base.html" %}
 
-{% block title %}register for an account{% endblock %}
+{% block title %}spell check query{% endblock %}
 
 {% block head  %}{{ super() }}{% endblock %}
 
@@ -10,17 +10,18 @@
      <p>&#9654; <a href="/">Main Page</a></p>
      <p>&#9654; <a href="{% print(url_for('logout')) %}">Logout</a></p>
      <!-- END: navigation links -->    
-     {% if result %}
+
      <!-- BEGIN: spell check results -->
+     {% if misspelled_words %}
      <p>
-     {% for misspelled_word in result.split("Misspelled word: ") %}
+     {% for misspelled_word in misspelled_words.split("Misspelled word: ") %}
      {% if misspelled_word %}
      <strong>Misspelled word: </strong> {{ misspelled_word.strip() }}<br>
      {% endif %}
      {% endfor %}
      </p>
-     <!-- END: spell check results -->
      {% endif %}
+     <!-- END: spell check results -->
      <!-- BEGIN: spell check query form -->
      <form action="{{ url_for('spell_check') }}" method="post">
      {{ form.hidden_tag() }}

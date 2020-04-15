@@ -5,16 +5,6 @@
 {% block head  %}{{ super() }}{% endblock %}
 
 {% block content %}
-     <!-- BEGIN: flashed messages -->
-     {% with messages = get_flashed_messages() %}
-     {% for message in messages %}
-     {% if message %}
-     <p>{{message}}</p>
-     {% endif %}
-     {% endfor %}
-     {% endwith %}
-     <!-- END: flashed messages -->
-
      <!-- BEGIN: login form -->
      <form action="{{ url_for('login') }}" method="post">
      {{ form.csrf_token }}

@@ -42,6 +42,8 @@ def register():
 
     user = User.query.filter_by(username=new_username).first()
 
+    id = "success"
+
     if user is not None:
         msg = "Oh no! Your registration was a failure."
 
@@ -57,6 +59,7 @@ def register():
     # send the new user to the login page
     return render_template('register.html',
                            result=msg,
+                           id=id,
                            form=registration_form)
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -87,10 +90,12 @@ def login():
         login_user(user)
         return redirect(url_for('index'))
 
-    msg= "Something isn\'t quite right. Try again."
+    id = "result"
+    msg = "Incorrect."
 
     return render_template('login.html',
                            result=msg,
+                           id=id,
                            form=login_form)
 
 @app.route('/logout')

@@ -119,7 +119,7 @@ def spell_check(comments=[]):
                                form=spell_check_form)
 
     # parse the user input
-    text_to_check = spell_check_form.textfield.data
+    text_to_check = spell_check_form.inputtext.data
     text_to_check = text_to_check.replace("<", " ")
     text_to_check = text_to_check.replace(">", " ")
     text_to_check = text_to_check.replace("\"", "_")

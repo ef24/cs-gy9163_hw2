@@ -5,7 +5,7 @@
 {% block head  %}{{ super() }}{% endblock %}
 
 {% block content %}
-     <p>You are logged in, <strong>{% print(current_user.username) %}</strong>!</p>
+     <p id="result">Success! You are logged in, <strong>{% print(current_user.username) %}</strong>!</p>
      <p>&#9654; <a href="/spell_check">Spell Check Query</a></p>
      <p>&#9654; <a href="/logout">Logout</a></p>
 {% endblock %}

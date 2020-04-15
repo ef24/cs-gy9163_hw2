@@ -1,3 +1,4 @@
+
 {% extends "wordflask-base.html" %}
 
 {% block title %}spell check query{% endblock %}
@@ -29,7 +30,7 @@
      Please enter the text that you want me to check for spelling errors.
      </p>
      <p>
-     {{ form.textfield(size=1000) }}
+     {{ form.inputtext(size=1000) }}
      </p>
      <p>
      {{ form.submit() }}

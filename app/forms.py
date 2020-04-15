@@ -28,5 +28,5 @@ class LoginForm(FlaskForm):
 	submit = SubmitField('Login')
 
 class SpellCheckForm(FlaskForm):
-	textfield = TextAreaField('Input Text', render_kw={"rows": 25, "cols": 100}, id='inputtext')
+	inputtext = TextAreaField('Input Text', render_kw={"rows": 25, "cols": 100})
 	submit = SubmitField('Submit')

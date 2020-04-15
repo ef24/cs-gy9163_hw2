@@ -79,7 +79,7 @@ def login():
     # parse the user input
     the_username = escape(login_form.uname.data)
     the_password = escape(login_form.pword.data)
-    the_authcode = escape(login_form.authcode.data)
+    the_authcode = escape(login_form.twofa.data)
 
     # validate the username
     user = User.query.filter_by(username=the_username).first()

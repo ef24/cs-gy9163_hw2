@@ -13,18 +13,18 @@ from app.models import User
 class RegisterForm(FlaskForm):
 	uname = StringField('Username', validators=[DataRequired()])
 	pword = PasswordField('Password', validators=[DataRequired()])
-	authcode = StringField('2FA Code', validators=[DataRequired()])
+	twofa = StringField('2FA Code', validators=[DataRequired()], id='2fa')
 	submit = SubmitField('Register')
-	
+
 	def validate_username(self, uname):
 		user = User.query.filter_by(username=uname).first()
 		if user is not None:
 			raise ValidationError('Username taken. Please choose again.')
-			
+
 class LoginForm(FlaskForm):
 	uname = StringField('Username', validators=[DataRequired()])
 	pword = PasswordField('Password', validators=[DataRequired()])
-	authcode = StringField('2FA Code', validators=[DataRequired()])
+	twofa = StringField('2FA Code', validators=[DataRequired()], id='2fa')
 	submit = SubmitField('Login')
 
 class SpellCheckForm(FlaskForm):

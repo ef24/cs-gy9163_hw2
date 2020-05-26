@@ -103,6 +103,8 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
+#@app.data('/database')
+#def database(): 
 
 @app.route('/spell_check', methods=['GET', 'POST'])
 def spell_check(comments=[]):

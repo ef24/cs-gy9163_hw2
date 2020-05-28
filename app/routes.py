@@ -131,9 +131,9 @@ def spell_check(comments=[]):
     the_file.write(text_to_check)
     the_file.close()
     spell_check_output = subprocess.check_output(
-        ['/projects/cs-gy9163_hw1/bin/spell', 
+        ['bin/a.out',
          '/tmp/text', 
-         '/projects/cs-gy9163_hw1/bin/wordlist.txt'], universal_newlines=True)
+         'bin/wordlist.txt'], universal_newlines=True)
 
     os.remove("/tmp/text")
 
